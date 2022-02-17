@@ -3,3 +3,47 @@
   min-height: 30px;
   background-color: #b41212;
 }
+.play_bar {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 1366px;
+  height: 768px;
+  z-index: 8;
+}
+._3 {
+  border-width: 5px;
+  border-style: solid;
+  border-radius: 50%;
+  opacity: 0.702;
+  position: absolute;
+  left: 424px;
+  top: 649px;
+  width: 118px;
+  height: 105px;
+  z-index: 7;
+}
+._2 {
+  border-width: 5px;
+  border-style: solid;
+  border-radius: 50%;
+  opacity: 0.702;
+  position: absolute;
+  left: 835px;
+  top: 649px;
+  width: 118px;
+  height: 105px;
+  z-index: 6;
+}
+.Ellipse_1 {
+  border-width: 5px;
+  border-style: solid;
+  border-radius: 50%;
+  opacity: 0.702;
+  position: absolute;
+  left: 628px;
+  top: 649px;
+  width: 118px;
+  height: 105px;
+  z-index: 5;
+}

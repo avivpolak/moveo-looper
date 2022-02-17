@@ -1,17 +1,24 @@
-import React, { useRef, useState } from "react";
-
-export default function Controller({ audioRef, sound, name,loop }: any) {
-    const toggleMute = () => {
-        if (audioRef.current.volume) {
-            audioRef.current.volume = 0;
-        } else {
-            audioRef.current.volume = 1;
-        }
-    };
+export default function Controller({
+    audioRef,
+    sound,
+    name,
+    loop,
+    isMuted,
+    toggleMute,
+    id,
+    color
+}: any) {
     return (
-        <div >
-            <div onClick={toggleMute}> mute/unmute {name}</div>
-            <audio ref={audioRef}  loop={loop} src={sound}>
+        <div style={{backgroundColor:color,}}>
+            <div
+                className="_4"
+                onClick={() => {
+                    toggleMute(id);
+                }}
+            >
+                {isMuted ? "unmute" : "mute"} {name}
+            </div>
+            <audio ref={audioRef} muted={isMuted} loop={loop} src={sound}>
                 <source type="audio/mpeg" />
             </audio>
         </div>
