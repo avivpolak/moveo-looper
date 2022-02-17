@@ -2,30 +2,54 @@ import React, { useRef, useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import Controller from "./components/Controller";
-import noVocals from "./media/noVocals.mp3";
-import vocalsOnly from "./media/vocalsOnly.mp3";
+import DRUMS from "./media/DRUMS.mp3";
+import BVOC from "./media/BVOC.mp3";
+import HEHEVOC from "./media/HEHEVOC.mp3";
+import HIGHVOC from "./media/HIGHVOC.mp3";
+import JIBRISH from "./media/JIBRISH.mp3";
+import LEAD1 from "./media/LEAD1.mp3";
+import UUHOVOC from "./media/LEAD1.mp3";
+import _tambourine_shake_higher from "./media/_tambourine_shake_higher.mp3";
+
 function App() {
     const [loop, setLoop] = useState(false);
     const toggleLoop = () => {
         setLoop(!loop);
     };
-    const audioRef1 = useRef<any>(null);
-    const audioRef2 = useRef<any>(null);
+
+    const [sounds, setRefs] = useState<any>([
+        { ref: useRef<any>(null), sound: DRUMS, name: "Drums" },
+        { ref: useRef<any>(null), sound: BVOC, name: "BVOC" },
+        { ref: useRef<any>(null), sound: HEHEVOC, name: "HEHEVOC" },
+        { ref: useRef<any>(null), sound: HIGHVOC, name: "HIGHVOC" },
+        { ref: useRef<any>(null), sound: JIBRISH, name: "JIBRISH" },
+        { ref: useRef<any>(null), sound: LEAD1, name: "LEAD1" },
+        { ref: useRef<any>(null), sound: UUHOVOC, name: "UUHOVOC" },
+        {
+            ref: useRef<any>(null),
+            sound: _tambourine_shake_higher,
+            name: "_tambourine_shake_higher",
+        },
+    ]);
     const play = () => {
-        audioRef1.current.play();
-        audioRef2.current.play();
+        for (const sound of sounds) {
+            sound.ref.current.play();
+        }
     };
     const pause = () => {
-        audioRef1.current.pause();
-        audioRef2.current.pause();
+        for (const sound of sounds) {
+            sound.ref.current.pause();
+        }
     };
     const setStartOver = () => {
-        audioRef1.current.currentTime = 0;
-        audioRef2.current.currentTime = 0;
+        for (const sound of sounds) {
+            sound.ref.current.currentTime = 0;
+        }
     };
     const setAlmostEnd = () => {
-        audioRef1.current.currentTime = 150;
-        audioRef2.current.currentTime = 150;
+        for (const sound of sounds) {
+            sound.ref.current.currentTime = 15;
+        }
     };
 
     return (
@@ -43,29 +67,25 @@ function App() {
                 <div className="contoller1" onClick={setAlmostEnd}>
                     setAlmostEnd
                 </div>
-          
                 <div className="contoller1" onClick={toggleLoop}>
                     toogleLoop
                 </div>
                 <div className="bar1">
-                    <Controller
-                        name="noVocals"
-                        sound={noVocals}
-                        audioRef={audioRef1}
-                        loop={loop}
-                    />
-                    <Controller
-                    className="contoller2"
-                        name="vocalsOnly"
-                        sound={vocalsOnly}
-                        audioRef={audioRef2}
-                        loop={loop}
-                    />
+                    {sounds.map((sound: any, index: number) => {
+                        return (
+                            <Controller
+                                key={index}
+                                name={sound.name}
+                                sound={sound.sound}
+                                audioRef={sound.ref}
+                                loop={loop}
+                            />
+                        );
+                    })}
                 </div>
             </div>
         </div>
     );
 }
-                        
 
 export default App;
