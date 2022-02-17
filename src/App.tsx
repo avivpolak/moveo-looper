@@ -12,25 +12,47 @@ import UUHOVOC from "./media/LEAD1.mp3";
 import _tambourine_shake_higher from "./media/_tambourine_shake_higher.mp3";
 
 function App() {
+    const [sounds, setSounds] = useState<any>([
+        { ref: useRef<any>(null), sound: DRUMS, name: "Drums", isMuted: false },
+        { ref: useRef<any>(null), sound: BVOC, name: "BVOC", isMuted: false },
+        {
+            ref: useRef<any>(null),
+            sound: HEHEVOC,
+            name: "HEHEVOC",
+            isMuted: false,
+        },
+        {
+            ref: useRef<any>(null),
+            sound: HIGHVOC,
+            name: "HIGHVOC",
+            isMuted: false,
+        },
+        {
+            ref: useRef<any>(null),
+            sound: JIBRISH,
+            name: "JIBRISH",
+            isMuted: false,
+        },
+        { ref: useRef<any>(null), sound: LEAD1, name: "LEAD1", isMuted: false },
+        {
+            ref: useRef<any>(null),
+            sound: UUHOVOC,
+            name: "UUHOVOC",
+            isMuted: false,
+        },
+        {
+            ref: useRef<any>(null),
+            sound: _tambourine_shake_higher,
+            name: "_tambourine_shake_higher",
+            isMuted: false,
+        },
+    ]);
+
     const [loop, setLoop] = useState(false);
     const toggleLoop = () => {
         setLoop(!loop);
     };
 
-    const [sounds, setRefs] = useState<any>([
-        { ref: useRef<any>(null), sound: DRUMS, name: "Drums" },
-        { ref: useRef<any>(null), sound: BVOC, name: "BVOC" },
-        { ref: useRef<any>(null), sound: HEHEVOC, name: "HEHEVOC" },
-        { ref: useRef<any>(null), sound: HIGHVOC, name: "HIGHVOC" },
-        { ref: useRef<any>(null), sound: JIBRISH, name: "JIBRISH" },
-        { ref: useRef<any>(null), sound: LEAD1, name: "LEAD1" },
-        { ref: useRef<any>(null), sound: UUHOVOC, name: "UUHOVOC" },
-        {
-            ref: useRef<any>(null),
-            sound: _tambourine_shake_higher,
-            name: "_tambourine_shake_higher",
-        },
-    ]);
     const play = () => {
         for (const sound of sounds) {
             sound.ref.current.play();
@@ -51,6 +73,7 @@ function App() {
             sound.ref.current.currentTime = 15;
         }
     };
+
 
     return (
         <div className="App">
