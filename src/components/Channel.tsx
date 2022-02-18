@@ -1,4 +1,4 @@
-export default function Controller({
+export default function Channel({
     audioRef,
     sound,
     name,
