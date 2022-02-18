@@ -23,7 +23,7 @@ function App() {
             const currentTime = getCurrentTime(0, sounds);
             const duration = getCurrentDuration(0, sounds);
             if (currentTime && duration) {
-                setProgress((currentTime / duration) * 100);
+                setProgress(20.3+(currentTime / duration) * 79.7);
             }
         },1);
         return () => clearInterval(interval);

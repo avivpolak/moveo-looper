@@ -6,21 +6,23 @@ export default function Channel({
     isMuted,
     toggleMute,
     id,
-    color
+    color,
 }: any) {
     return (
-        <div style={{backgroundColor:color,}}>
+        <div className="channel">
             <div
-                className="_4"
+                className="control"
                 onClick={() => {
                     toggleMute(id);
                 }}
             >
-                {isMuted ? "unmute" : "mute"} {name}
+                {isMuted ? "🔈" : "🔊"} {name}
             </div>
-            <audio ref={audioRef} muted={isMuted} loop={loop} src={sound}>
-                <source type="audio/mpeg" />
-            </audio>
+            <div className="bar" style={{ backgroundColor: color ,opacity:0.7 }}>
+                <audio ref={audioRef} muted={isMuted} loop={loop} src={sound}>
+                    <source type="audio/mpeg" />
+                </audio>
+            </div>
         </div>
     );
 }
