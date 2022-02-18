@@ -1,23 +1,55 @@
-.bar1 {
-    width: 100%;
-    min-height: 30px;
-}
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 .channel {
-    margin-top: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(10, 1fr);
     grid-template-rows: 1fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
+    overflow: hidden;
 }
 body {
     background-color: rgb(21, 27, 27);
     color: aliceblue;
+    font-family: "Open Sans", sans-serif;
 }
 
 .control {
     grid-area: 1 / 1 / 2 / 2;
+    text-align: center;
 }
 .bar {
-    grid-area: 1 / 2 / 2 / 6;
+    grid-area: 1 / 2 / 2 / 11;
+    width: 100%;
+    min-height: 30px;
+    padding-left: 30px;
+}
+.looper {
+    background-image: url("./media/images/backgroundMixer.jpg");
+    background-size: cover;
+    /* padding-top: 10px;
+    padding-bottom: 10px; */
+}
+.button {
+
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    position: absolute;
+    width: 15vh;
+    height: 15vh;
+}
+.play_bar {
+    left: 50%;
+    bottom: 4vh;
+    z-index: 5;
+    font-size:60px
+}
+
+.restart_bar{
+    left: 40%;
+    bottom: 4vh;
+    z-index: 5;
+    font-size:60px
 }

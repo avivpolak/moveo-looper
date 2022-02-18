@@ -1,3 +1,10 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+    faPlay,
+    faPause,
+    faArrowRotateLeft,
+    faArrowRight
+} from "@fortawesome/free-solid-svg-icons";
 import {
     chooseSong,
     pause,
@@ -13,37 +20,48 @@ export default function ControlPanel({
     states: any;
     setFunctions: any;
 }) {
-    const { setProgress, setSong, setLoop } = setFunctions;
-    const { soundPaths, sounds, loop } = states;
+    const { setProgress, setSong, setLoop, setIsPlaying } = setFunctions;
+    const { soundPaths, sounds, loop, isPlaying } = states;
 
     return (
         <div>
             <select
                 onChange={({ target }) => {
-                    chooseSong(target.value, soundPaths, setSong);
+                    chooseSong(
+                        target.value,
+                        soundPaths,
+                        setSong,
+                        setIsPlaying,
+                        setProgress,
+                        sounds
+                    );
                 }}
             >
                 <option>default</option>
                 <option>thisCity</option>
             </select>
+            {isPlaying ? (
+                <div
+                    className="play_bar button"
+                    onClick={() => {
+                        pause(sounds, setIsPlaying);
+                    }}
+                >
+                    <FontAwesomeIcon icon={faPause} />
+                </div>
+            ) : (
+                <div
+                    className="play_bar button"
+                    onClick={() => {
+                        play(sounds, setIsPlaying);
+                    }}
+                >
+                    <FontAwesomeIcon icon={faPlay} />
+                </div>
+            )}
+
             <div
-                className="_3"
-                onClick={() => {
-                    play(sounds);
-                }}
-            >
-                play
-            </div>
-            <div
-                className="_2"
-                onClick={() => {
-                    pause(sounds);
-                }}
-            >
-                pause
-            </div>
-            <div
-                className="Ellipse_1"
+                className=""
                 onClick={() => {
                     setStartOver(setProgress, sounds);
                 }}
@@ -59,12 +77,12 @@ export default function ControlPanel({
                 setAlmostEnd
             </div>
             <div
-                className="contoller1"
+                className="restart_bar button"
                 onClick={() => {
                     toggleLoop(setLoop, loop);
                 }}
             >
-                {loop ? "set no loop" : "set loop"}
+                {loop ? <FontAwesomeIcon icon={faArrowRotateLeft} /> : <FontAwesomeIcon icon={faArrowRight} />}
             </div>
         </div>
     );

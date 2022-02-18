@@ -6,6 +6,8 @@ import {
     getCurrentDuration,
     getCurrentTime,
     getSoundsState,
+    pause,
+    setStartOver,
     toggleMute,
 } from "./utils/looper";
 import { Sounds } from "./types/looper";
@@ -17,15 +19,33 @@ function App() {
     const [progress, setProgress] = useState(0);
     const [sounds, setSounds] = useState<Sounds>(getSoundsState(song));
     const [loop, setLoop] = useState(false);
-
+    const [isPlaying, setIsPlaying] = useState(false);
     useEffect(() => {
         const interval = setInterval(() => {
             const currentTime = getCurrentTime(0, sounds);
             const duration = getCurrentDuration(0, sounds);
             if (currentTime && duration) {
-                setProgress(20.3+(currentTime / duration) * 79.7);
+                setProgress(10.3 + (currentTime / duration) * 89.7);
+                if (progress >= 100) {
+                    if (!loop) {
+                        pause(sounds, setIsPlaying);
+                    }
+                    setStartOver(setProgress, sounds);
+                }
             }
-        },1);
+        }, 1);
+        return () => clearInterval(interval);
+    }, [sounds]);
+    useEffect(() => {
+        const interval = setInterval(() => {
+            const currentTime = getCurrentTime(0, sounds);
+            Object.entries(sounds).forEach(([id, sound]) => {
+                setSounds({
+                    ...sounds,
+                    [id]: { ...sound, currentTime },
+                });
+            }, 1);
+        });
         return () => clearInterval(interval);
     }, [sounds]);
     useEffect(() => {
@@ -34,13 +54,21 @@ function App() {
 
     return (
         <div className="App">
-            <div className="play_bar">
+            <div>
                 <ControlPanel
-                    setFunctions={{ setProgress, setSong, setLoop }}
-                    states={{ soundPaths, sounds, loop }}
+                    setFunctions={{
+                        setProgress,
+                        setSong,
+                        setLoop,
+                        setIsPlaying,
+                    }}
+                    states={{ soundPaths, sounds, loop, isPlaying }}
                 />
-                <div className="bar1">
-                    <Cursor precentage={progress} />
+                <div className="looper">
+                    <Cursor
+                        precentage={progress}
+                        numberOfChannels={Object.keys(sounds).length}
+                    />
                     {Object.entries(sounds).map(
                         ([id, sound], index: number) => {
                             return (

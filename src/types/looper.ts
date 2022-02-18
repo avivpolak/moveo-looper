@@ -5,6 +5,7 @@ export interface Sounds {
         name: string;
         isMuted: boolean;
         color: string;
+        currentTime: number;
     };
 }
 export interface SoundPaths{

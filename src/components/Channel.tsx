@@ -16,9 +16,10 @@ export default function Channel({
                     toggleMute(id);
                 }}
             >
-                {isMuted ? "🔈" : "🔊"} {name}
+                {isMuted ? "🔈" : "🔊"} 
             </div>
-            <div className="bar" style={{ backgroundColor: color ,opacity:0.7 }}>
+            <div className="bar" style={{ backgroundColor: color ,opacity:0.5 }}>
+            {name}
                 <audio ref={audioRef} muted={isMuted} loop={loop} src={sound}>
                     <source type="audio/mpeg" />
                 </audio>
