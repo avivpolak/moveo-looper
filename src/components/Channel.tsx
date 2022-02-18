@@ -1,3 +1,6 @@
+import { faVolumeHigh, faVolumeXmark } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 export default function Channel({
     audioRef,
     sound,
@@ -16,7 +19,7 @@ export default function Channel({
                     toggleMute(id);
                 }}
             >
-                {isMuted ? "🔈" : "🔊"} 
+                {isMuted ? <FontAwesomeIcon icon={faVolumeXmark} /> : <FontAwesomeIcon icon={faVolumeHigh} />} 
             </div>
             <div className="bar" style={{ backgroundColor: color ,opacity:0.5 }}>
             {name}

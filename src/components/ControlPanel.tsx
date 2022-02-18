@@ -3,7 +3,8 @@ import {
     faPlay,
     faPause,
     faArrowRotateLeft,
-    faArrowRight
+    faArrowRight,
+    faBackwardFast
 } from "@fortawesome/free-solid-svg-icons";
 import {
     chooseSong,
@@ -61,12 +62,12 @@ export default function ControlPanel({
             )}
 
             <div
-                className=""
+                className="goToStart_bar button"
                 onClick={() => {
                     setStartOver(setProgress, sounds);
                 }}
             >
-                setStartOver
+                <FontAwesomeIcon icon={faBackwardFast} />
             </div>
             <div
                 className="contoller1"

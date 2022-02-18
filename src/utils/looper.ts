@@ -13,7 +13,7 @@ export const getSoundsState = (soundsPaths: string[]) => {
             name,
             isMuted: false,
             color: getRandomColor(),
-            currentTime:0,
+            currentTime: 0,
         };
         counter++;
     }
@@ -73,9 +73,20 @@ export const getCurrentTime = (id: number, sounds: Sounds) => {
     }
     return 0;
 };
+
 export const getCurrentDuration = (id: number, sounds: Sounds) => {
     if (sounds[id].ref.current) {
         return sounds[id]?.ref?.current?.duration;
     }
     return 0;
+};
+
+//sync every sound with the progress bar
+export const syncSounds = (
+    sounds: Sounds,
+    progress: number,
+) => {
+    for (const sound of Object.values(sounds)) {
+        sound.ref.current.currentTime = progress;
+    }
 };

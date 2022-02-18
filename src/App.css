@@ -10,7 +10,9 @@
     overflow: hidden;
 }
 body {
-    background-color: rgb(21, 27, 27);
+    background-image: url("./media/images/backgroundMixer2.jpg");
+    background-size: cover;
+
     color: aliceblue;
     font-family: "Open Sans", sans-serif;
 }
@@ -26,13 +28,10 @@ body {
     padding-left: 30px;
 }
 .looper {
-    background-image: url("./media/images/backgroundMixer.jpg");
-    background-size: cover;
-    /* padding-top: 10px;
-    padding-bottom: 10px; */
+    background-color: rgba(99, 182, 255, 0.575);
+    opacity: 1;
 }
 .button {
-
     text-align: center;
     display: table-cell;
     vertical-align: middle;
@@ -44,12 +43,19 @@ body {
     left: 50%;
     bottom: 4vh;
     z-index: 5;
-    font-size:60px
+    font-size: 60px;
 }
 
-.restart_bar{
+.restart_bar {
     left: 40%;
     bottom: 4vh;
     z-index: 5;
-    font-size:60px
+    font-size: 60px;
+}
+
+.goToStart_bar {
+    left: 60%;
+    bottom: 4vh;
+    z-index: 5;
+    font-size: 60px;
 }

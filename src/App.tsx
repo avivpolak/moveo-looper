@@ -8,6 +8,7 @@ import {
     getSoundsState,
     pause,
     setStartOver,
+    syncSounds,
     toggleMute,
 } from "./utils/looper";
 import { Sounds } from "./types/looper";
@@ -39,18 +40,21 @@ function App() {
     useEffect(() => {
         const interval = setInterval(() => {
             const currentTime = getCurrentTime(0, sounds);
-            Object.entries(sounds).forEach(([id, sound]) => {
-                setSounds({
-                    ...sounds,
-                    [id]: { ...sound, currentTime },
-                });
-            }, 1);
+            if (currentTime) {
+                Object.entries(sounds).forEach(([id, sound]) => {
+                    setSounds({
+                        ...sounds,
+                        [id]: { ...sound, currentTime },
+                    });
+                }, 1);
+            }
         });
         return () => clearInterval(interval);
     }, [sounds]);
     useEffect(() => {
         setSounds(getSoundsState(song));
     }, [song]);
+    
 
     return (
         <div className="App">
