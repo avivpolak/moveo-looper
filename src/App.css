@@ -45,21 +45,21 @@ body {
     height: 15vh;
 }
 .play_bar {
-    left: 50%;
+    left: 45%;
     bottom: 4vh;
     z-index: 5;
     font-size: 60px;
 }
 
 .restart_bar {
-    left: 40%;
+    left: 35%;
     bottom: 4vh;
     z-index: 5;
     font-size: 60px;
 }
 
 .goToStart_bar {
-    left: 60%;
+    left: 55%;
     bottom: 4vh;
     z-index: 5;
     font-size: 60px;
@@ -137,6 +137,7 @@ body {
 @media all and (max-width: 800px) {
     .custom-select {
         width: 100%;
+        text-align: center;
     }
     .goToStart_bar {
         left: 68%;
