@@ -8,6 +8,6 @@ export interface Sounds {
         currentTime: number;
     };
 }
-export interface SoundPaths{
+export interface SoundPaths {
     [key: string]: string[];
 }

@@ -56,8 +56,11 @@ export const setStartOver = (setProgress: Function, sounds: Sounds) => {
     setProgress(0);
 };
 
-
-export const setSoundsProgress = (sounds: Sounds,value:number,setProgress:Function) => {
+export const setSoundsProgress = (
+    sounds: Sounds,
+    value: number,
+    setProgress: Function
+) => {
     for (const sound of Object.values(sounds)) {
         sound.ref.current.currentTime = value;
     }

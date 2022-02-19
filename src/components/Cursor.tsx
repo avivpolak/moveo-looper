@@ -33,7 +33,7 @@ export default function Cursor({
                 play(sounds, setIsPlaying);
             }}
             style={{
-                width: "88.3%",
+                width: "89.1%",
                 position: "absolute",
                 left: "10.5%",
                 zIndex: 1,

@@ -26,6 +26,7 @@ export default function ControlPanel({
     return (
         <div>
             <select
+                className="custom-select"
                 onChange={({ target }) => {
                     chooseSong(
                         target.value,
@@ -37,13 +38,15 @@ export default function ControlPanel({
                     );
                 }}
             >
-                {Object.keys(soundPaths).map((soundPath: string, index: number) => {
-                    return (
-                        <option key={index} value={soundPath}>
-                            {soundPath}
-                        </option>
-                    );
-                })}
+                {Object.keys(soundPaths).map(
+                    (soundPath: string, index: number) => {
+                        return (
+                            <option className="custom-option" key={index} value={soundPath} >
+                                {soundPath}
+                            </option>
+                        );
+                    }
+                )}
             </select>
             {isPlaying ? (
                 <div

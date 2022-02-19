@@ -29,11 +29,9 @@ function App() {
             if (currentTime && duration) {
                 setProgress(currentTime);
                 if (currentTime >= duration) {
-                    console.log(loop);
                     if (!loop) {
                         pause(sounds, setIsPlaying);
                     }
-                    setSoundsProgress(sounds, 0, setProgress);
                 }
             }
         }, 1);
@@ -62,9 +60,10 @@ function App() {
         const numberOfChannels = Object.keys(sounds).length;
         document.documentElement.style.setProperty(
             "--cursor-height",
-            `${numberOfChannels * 30 + (numberOfChannels - 1) * 20}px`
+            `${numberOfChannels * 30 + (numberOfChannels - 1) * 20-0.4}px`
         );
     }, [sounds]);
+
 
     return (
         <div className="App">
