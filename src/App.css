@@ -10,9 +10,7 @@
     overflow: hidden;
 }
 body {
-    background-image: url("./media/images/backgroundMixer2.jpg");
-    background-size: cover;
-
+    background-color: rgb(37, 37, 37);
     color: aliceblue;
     font-family: "Open Sans", sans-serif;
 }
@@ -28,8 +26,9 @@ body {
     padding-left: 30px;
 }
 .looper {
-    background-color: rgba(99, 182, 255, 0.575);
+    background-image: url("./media/images/backgroundMixer.jpg");
     opacity: 1;
+    background-size: cover;
 }
 .button {
     text-align: center;
@@ -58,4 +57,18 @@ body {
     bottom: 4vh;
     z-index: 5;
     font-size: 60px;
+}
+
+.cursor::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 1px; /* Set a specific slider handle width */
+    background: rgb(37, 37, 37);
+    height: 100vh;
+}
+.cursor::-webkit-slider-thumb:hover {
+    cursor: ew-resize;
+}
+
+.cursor {
+    background-color: rgba(240, 248, 255, 0);
 }

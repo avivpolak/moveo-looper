@@ -19,10 +19,17 @@ export default function Channel({
                     toggleMute(id);
                 }}
             >
-                {isMuted ? <FontAwesomeIcon icon={faVolumeXmark} /> : <FontAwesomeIcon icon={faVolumeHigh} />} 
+                {isMuted ? (
+                    <FontAwesomeIcon icon={faVolumeXmark} />
+                ) : (
+                    <FontAwesomeIcon icon={faVolumeHigh} />
+                )}
             </div>
-            <div className="bar" style={{ backgroundColor: color ,opacity:0.5 }}>
-            {name}
+            <div
+                className="bar"
+                style={{ backgroundColor: color, opacity: 0.5 }}
+            >
+                {name}
                 <audio ref={audioRef} muted={isMuted} loop={loop} src={sound}>
                     <source type="audio/mpeg" />
                 </audio>

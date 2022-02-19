@@ -9,7 +9,6 @@ import {
     pause,
     play,
     setSoundsProgress,
-    setStartOver,
     toggleMute,
 } from "./utils/looper";
 import { Sounds } from "./types/looper";
@@ -28,14 +27,12 @@ function App() {
             const duration = getCurrentDuration(0, sounds);
             if (currentTime && duration) {
                 setProgress(currentTime);
-
                 if (currentTime >= duration) {
+                    console.log(loop);
                     if (!loop) {
-                        console.log(progress)
                         pause(sounds, setIsPlaying);
                     }
                     setSoundsProgress(sounds, 0, setProgress);
-
                 }
             }
         }, 1);
@@ -58,10 +55,6 @@ function App() {
     useEffect(() => {
         setSounds(getSoundsState(song));
     }, [song]);
-    // useEffect(() => {
-    //     setSoundsProgress(sounds,progress)
-    //     // console.log("progress", progress);
-    // }, [progress]);
 
     return (
         <div className="App">

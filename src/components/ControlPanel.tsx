@@ -8,7 +8,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import {
     chooseSong,
-    getCurrentDuration,
     pause,
     play,
     setStartOver,
@@ -22,8 +21,8 @@ export default function ControlPanel({
     setFunctions: any;
 }) {
     const { setProgress, setSong, setLoop, setIsPlaying } = setFunctions;
-    const { soundPaths, sounds, loop, isPlaying, progress } = states;
-    
+    const { soundPaths, sounds, loop, isPlaying } = states;
+
     return (
         <div>
             <select
@@ -38,8 +37,13 @@ export default function ControlPanel({
                     );
                 }}
             >
-                <option>default</option>
-                <option>thisCity</option>
+                {Object.keys(soundPaths).map((soundPath: string, index: number) => {
+                    return (
+                        <option key={index} value={soundPath}>
+                            {soundPath}
+                        </option>
+                    );
+                })}
             </select>
             {isPlaying ? (
                 <div
@@ -69,7 +73,7 @@ export default function ControlPanel({
             >
                 <FontAwesomeIcon icon={faBackwardFast} />
             </div>
-            
+
             <div
                 className="restart_bar button"
                 onClick={() => {
@@ -82,7 +86,6 @@ export default function ControlPanel({
                     <FontAwesomeIcon icon={faArrowRight} />
                 )}
             </div>
-            
         </div>
     );
 }

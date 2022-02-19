@@ -11,6 +11,7 @@ export default function Cursor({
 }: any) {
     return (
         <input
+            className="cursor"
             type="range"
             value={progress}
             min="0"
@@ -20,7 +21,6 @@ export default function Cursor({
                 pause(sounds, setIsPlaying);
             }}
             onChange={(e) => {
-                console.log(Number(e.currentTarget.value))
                 setSoundsProgress(
                     sounds,
                     Number(e.currentTarget.value),
@@ -30,7 +30,13 @@ export default function Cursor({
             onMouseUp={() => {
                 play(sounds, setIsPlaying);
             }}
-            style={{width: "100%"}}
+            style={{
+                width: "88.3%",
+                position: "absolute",
+                left: "10.5%",
+                zIndex: 1,
+                WebkitAppearance: "none", 
+            }}
         />
     );
 }
