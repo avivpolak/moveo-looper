@@ -28,16 +28,20 @@ function App() {
             const duration = getCurrentDuration(0, sounds);
             if (currentTime && duration) {
                 setProgress(currentTime);
+                
                 if (progress >= duration) {
                     if (!loop) {
                         pause(sounds, setIsPlaying);
+                        setSoundsProgress(sounds,0,setProgress);
                     }
-                    setStartOver(setProgress, sounds);
+                    
+                    setSoundsProgress(sounds,0,setProgress);
+                    // setStartOver(setProgress, sounds);
                 }
             }
         }, 1);
         return () => clearInterval(interval);
-    }, [sounds]);
+    }, [isPlaying]);
     useEffect(() => {
         const interval = setInterval(() => {
             const currentTime = getCurrentTime(0, sounds);
@@ -74,7 +78,7 @@ function App() {
                 />
                 <div className="looper">
                     <Cursor
-                    duration={getCurrentDuration(0, sounds)}
+                        duration={getCurrentDuration(0, sounds)}
                         progress={progress}
                         numberOfChannels={Object.keys(sounds).length}
                         setProgress={setProgress}
