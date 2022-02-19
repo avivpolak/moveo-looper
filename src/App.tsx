@@ -6,6 +6,7 @@ import {
     getCurrentDuration,
     getCurrentTime,
     getSoundsState,
+    isOffset,
     pause,
     play,
     setSoundsProgress,
@@ -22,11 +23,24 @@ function App() {
     const [sounds, setSounds] = useState<Sounds>(getSoundsState(song));
     const [loop, setLoop] = useState(false);
     const [isPlaying, setIsPlaying] = useState(false);
+
+    //Sync all the channals if neccery
+    useEffect(() => {
+        const interval = setInterval(() => {
+            const currentTime = getCurrentTime(0, sounds);
+            if (currentTime && isOffset(sounds,0.01)) {
+                setSoundsProgress(sounds, currentTime, setProgress);
+            }
+        }, 2000);
+        return () => clearInterval(interval);
+    }, [isPlaying]);
+
+    //handle loop
     useEffect(() => {
         const interval = setInterval(() => {
             const currentTime = getCurrentTime(0, sounds);
             const duration = getCurrentDuration(0, sounds);
-            if (currentTime && duration) {
+            if ((currentTime === 0 && duration) || (currentTime && duration)) {
                 setProgress(currentTime);
                 if (currentTime >= duration) {
                     if (!loop) {
@@ -37,6 +51,8 @@ function App() {
         }, 1);
         return () => clearInterval(interval);
     }, [isPlaying]);
+
+    //update the channels progress
     useEffect(() => {
         const interval = setInterval(() => {
             const currentTime = getCurrentTime(0, sounds);
@@ -51,6 +67,8 @@ function App() {
         });
         return () => clearInterval(interval);
     }, [sounds]);
+
+    //handle song change
     useEffect(() => {
         setSounds(getSoundsState(song));
     }, [song]);
@@ -60,10 +78,9 @@ function App() {
         const numberOfChannels = Object.keys(sounds).length;
         document.documentElement.style.setProperty(
             "--cursor-height",
-            `${numberOfChannels * 30 + (numberOfChannels - 1) * 20-0.4}px`
+            `${numberOfChannels * 30 + (numberOfChannels - 1) * 20 - 0.4}px`
         );
     }, [sounds]);
-
 
     return (
         <div className="App">

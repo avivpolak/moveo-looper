@@ -66,6 +66,20 @@ export const setSoundsProgress = (
     }
     setProgress(value);
 };
+
+export const isOffset = (
+    sounds: Sounds,
+    offset:number
+) => {
+    const currentTimes=Object.values(sounds).map(sound=>sound.ref.current.currentTime);
+    const averageTime = currentTimes.reduce((a, b) => a + b, 0) / currentTimes.length;
+    for (const time of currentTimes) {
+        if(Math.abs(time-averageTime)>offset){
+            return true;
+        }
+    }
+    return false;
+};
 export const toggleMute = (id: number, sounds: Sounds, setSounds: Function) => {
     setSounds({
         ...sounds,

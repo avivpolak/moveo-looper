@@ -8,6 +8,7 @@ https://avivpolak.github.io/moveo-looper/
 
 
 Features:
+- generic platform , an Abitilty to add songs.
 - Draggable cursor.
 - Responsive for also mobile and desktop use.
 
@@ -28,7 +29,7 @@ You will also see any lint errors in the console.
 
 2. import all the tracks to "/src/songs/soundpaths"
 3. In "src/songs/soundpaths", add an entry to soundPaths , as follows :
-"yourSongName":[track1,track2,track3 ...]
+yourSongName:[track1,track2,track3 ...]
 
 ## Tools Used
 
