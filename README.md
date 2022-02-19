@@ -7,8 +7,12 @@ Check out github pages:
 https://avivpolak.github.io/moveo-looper/
 
 
-## Available Scripts
-In the project directory, you can run:
+Features:
+- Draggable cursor.
+- Responsive for also mobile and desktop use.
+
+
+## Run:
 
 ### `npm start`
 
@@ -28,5 +32,8 @@ You will also see any lint errors in the console.
 
 ## Tools Used
 
--React
--HTML5 Audio
+- React
+- HTML5 Audio
+
+## Contribution:
+PR's are welcome !
