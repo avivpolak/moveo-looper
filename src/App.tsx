@@ -28,15 +28,14 @@ function App() {
             const duration = getCurrentDuration(0, sounds);
             if (currentTime && duration) {
                 setProgress(currentTime);
-                
-                if (progress >= duration) {
+
+                if (currentTime >= duration) {
                     if (!loop) {
+                        console.log(progress)
                         pause(sounds, setIsPlaying);
-                        setSoundsProgress(sounds,0,setProgress);
                     }
-                    
-                    setSoundsProgress(sounds,0,setProgress);
-                    // setStartOver(setProgress, sounds);
+                    setSoundsProgress(sounds, 0, setProgress);
+
                 }
             }
         }, 1);
