@@ -14,6 +14,7 @@ export default function Cursor({
             type="range"
             value={progress}
             min="0"
+            step={0.001}
             max={duration}
             onMouseDown={() => {
                 pause(sounds, setIsPlaying);
@@ -29,6 +30,7 @@ export default function Cursor({
             onMouseUp={() => {
                 play(sounds, setIsPlaying);
             }}
+            style={{width: "100%"}}
         />
     );
 }

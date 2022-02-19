@@ -28,7 +28,7 @@ function App() {
             const duration = getCurrentDuration(0, sounds);
             if (currentTime && duration) {
                 setProgress(currentTime);
-                if (progress >= 100) {
+                if (progress >= duration) {
                     if (!loop) {
                         pause(sounds, setIsPlaying);
                     }
