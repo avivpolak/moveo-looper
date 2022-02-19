@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/moveo-looper/static/css/main.aeaebc20.css",
+    "main.js": "/moveo-looper/static/js/main.6f0d824b.js",
+    "static/js/787.4118bccb.chunk.js": "/moveo-looper/static/js/787.4118bccb.chunk.js",
+    "static/media/bass.mp3": "/moveo-looper/static/media/bass.cc4ac17547c23139e73b.mp3",
+    "static/media/beat-box.mp3": "/moveo-looper/static/media/beat-box.26018bd6ea6d318a780e.mp3",
+    "static/media/guitar.mp3": "/moveo-looper/static/media/guitar.3cc0a6f0de928c81444e.mp3",
+    "static/media/organ.mp3": "/moveo-looper/static/media/organ.218ed44cb73d91d0821d.mp3",
+    "static/media/vocal.mp3": "/moveo-looper/static/media/vocal.4fe55b969b6f852d3650.mp3",
+    "static/media/BVOC.mp3": "/moveo-looper/static/media/BVOC.5ffa9906c5972f1fb03c.mp3",
+    "static/media/DRUMS.mp3": "/moveo-looper/static/media/DRUMS.f0332952662d2e1f5d15.mp3",
+    "static/media/HEHEVOC.mp3": "/moveo-looper/static/media/HEHEVOC.fd659059c1d55320658f.mp3",
+    "static/media/HIGHVOC.mp3": "/moveo-looper/static/media/HIGHVOC.f09f6e03383b234370d0.mp3",
+    "static/media/JIBRISH.mp3": "/moveo-looper/static/media/JIBRISH.d23f0b604ef55163d7e6.mp3",
+    "static/media/LEAD1.mp3": "/moveo-looper/static/media/LEAD1.f8658c330b3d07661550.mp3",
+    "static/media/UUHOVOC.mp3": "/moveo-looper/static/media/UUHOVOC.bc87006a5f29b4cfa918.mp3",
+    "static/media/_tambourine_shake_higher.mp3": "/moveo-looper/static/media/_tambourine_shake_higher.2ceb47bfdbea6e81aae9.mp3",
+    "static/media/backgroundMixer.jpg": "/moveo-looper/static/media/backgroundMixer.57fc391b5cca8b038acb.jpg",
+    "index.html": "/moveo-looper/index.html",
+    "main.aeaebc20.css.map": "/moveo-looper/static/css/main.aeaebc20.css.map",
+    "main.6f0d824b.js.map": "/moveo-looper/static/js/main.6f0d824b.js.map",
+    "787.4118bccb.chunk.js.map": "/moveo-looper/static/js/787.4118bccb.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.aeaebc20.css",
+    "static/js/main.6f0d824b.js"
+  ]
+}
