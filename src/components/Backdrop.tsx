@@ -1,11 +1,16 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
-const Backdrop = ({ activeColor, trackIndex, isPlaying }:any) => {
-  useEffect(() => {
-    document.documentElement.style.setProperty("--active-color", activeColor);
-  }, [trackIndex, activeColor]);
+const Backdrop = ({ activeColor, trackIndex, isPlaying }: any) => {
+    useEffect(() => {
+        document.documentElement.style.setProperty(
+            "--active-color",
+            activeColor
+        );
+    }, [trackIndex, activeColor]);
 
-  return <div className={`color-backdrop ${isPlaying ? "playing" : "idle"}`} />;
+    return (
+        <div className={`color-backdrop ${isPlaying ? "playing" : "idle"}`} />
+    );
 };
 
 export default Backdrop;

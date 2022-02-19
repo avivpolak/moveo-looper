@@ -10,6 +10,7 @@ import {
     pause,
     play,
     setSoundsProgress,
+    syncOffsets,
     toggleMute,
 } from "./utils/looper";
 import { Sounds } from "./types/looper";
@@ -28,10 +29,9 @@ function App() {
     useEffect(() => {
         const interval = setInterval(() => {
             const currentTime = getCurrentTime(0, sounds);
-            if (currentTime && isOffset(sounds,0.01)) {
-                setSoundsProgress(sounds, currentTime, setProgress);
-            }
-        }, 2000);
+            if (currentTime && isOffset(sounds,0.1)) {
+                syncOffsets(sounds,0.1);            }
+        }, 1000);
         return () => clearInterval(interval);
     }, [isPlaying]);
 

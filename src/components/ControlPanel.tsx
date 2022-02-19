@@ -41,7 +41,11 @@ export default function ControlPanel({
                 {Object.keys(soundPaths).map(
                     (soundPath: string, index: number) => {
                         return (
-                            <option className="custom-option" key={index} value={soundPath} >
+                            <option
+                                className="custom-option"
+                                key={index}
+                                value={soundPath}
+                            >
                                 {soundPath}
                             </option>
                         );

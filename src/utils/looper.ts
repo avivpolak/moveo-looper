@@ -66,7 +66,19 @@ export const setSoundsProgress = (
     }
     setProgress(value);
 };
+export const syncOffsets = (
+    sounds: Sounds,
+    offset: number,
+) => {
+    const currentTimes=Object.values(sounds).map(sound=>sound.ref.current.currentTime);
+    const averageTime = currentTimes.reduce((a, b) => a + b, 0) / currentTimes.length;
+    const offsetSounds = Object.values(sounds).filter(sound=>Math.abs(sound.ref.current.currentTime-averageTime)>offset);
 
+    for (const sound of offsetSounds) {
+        sound.ref.current.currentTime = averageTime;
+    }
+ 
+};
 export const isOffset = (
     sounds: Sounds,
     offset:number
