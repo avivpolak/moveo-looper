@@ -47,6 +47,7 @@ export const pause = (sounds: Sounds, setIsPlaying: Function) => {
     for (const sound of Object.values(sounds)) {
         sound.ref.current.pause();
     }
+    console.log("pause");
     setIsPlaying(false);
 };
 export const setStartOver = (setProgress: Function, sounds: Sounds) => {
@@ -56,10 +57,13 @@ export const setStartOver = (setProgress: Function, sounds: Sounds) => {
     setProgress(0);
 };
 
-export const setAlmostEnd = (sounds: Sounds) => {
+
+export const setSoundsProgress = (sounds: Sounds,value:number,setProgress:Function) => {
+    console.log(value)
     for (const sound of Object.values(sounds)) {
-        sound.ref.current.currentTime = 15;
+        sound.ref.current.currentTime = value;
     }
+    setProgress(value);
 };
 export const toggleMute = (id: number, sounds: Sounds, setSounds: Function) => {
     setSounds({
@@ -79,14 +83,4 @@ export const getCurrentDuration = (id: number, sounds: Sounds) => {
         return sounds[id]?.ref?.current?.duration;
     }
     return 0;
-};
-
-//sync every sound with the progress bar
-export const syncSounds = (
-    sounds: Sounds,
-    progress: number,
-) => {
-    for (const sound of Object.values(sounds)) {
-        sound.ref.current.currentTime = progress;
-    }
 };

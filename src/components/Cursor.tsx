@@ -1,16 +1,34 @@
-import React from "react";
+import { setSoundsProgress } from "../utils/looper";
 
-export default function Cursor({ precentage,numberOfChannels }: any) {
+export default function Cursor({
+    progress,
+    duration,
+    setIsPlaying,
+    setProgress,
+    play,
+    sounds,
+    pause,
+}: any) {
     return (
-        <div
-            style={{
-                zIndex: 30,
-                width: "1px",
-                backgroundColor: "black",
-                height: `${numberOfChannels * 30+numberOfChannels*20-20}px`,
-                position: "absolute",
-                left: `${precentage}%`,
+        <input
+            type="range"
+            value={progress}
+            min="0"
+            max={duration}
+            onMouseDown={() => {
+                pause(sounds, setIsPlaying);
             }}
-        ></div>
+            onChange={(e) => {
+                console.log(Number(e.currentTarget.value))
+                setSoundsProgress(
+                    sounds,
+                    Number(e.currentTarget.value),
+                    setProgress
+                );
+            }}
+            onMouseUp={() => {
+                play(sounds, setIsPlaying);
+            }}
+        />
     );
 }

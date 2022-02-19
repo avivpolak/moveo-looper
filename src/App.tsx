@@ -7,8 +7,9 @@ import {
     getCurrentTime,
     getSoundsState,
     pause,
+    play,
+    setSoundsProgress,
     setStartOver,
-    syncSounds,
     toggleMute,
 } from "./utils/looper";
 import { Sounds } from "./types/looper";
@@ -26,7 +27,7 @@ function App() {
             const currentTime = getCurrentTime(0, sounds);
             const duration = getCurrentDuration(0, sounds);
             if (currentTime && duration) {
-                setProgress(10.3 + (currentTime / duration) * 89.7);
+                setProgress(currentTime);
                 if (progress >= 100) {
                     if (!loop) {
                         pause(sounds, setIsPlaying);
@@ -54,7 +55,10 @@ function App() {
     useEffect(() => {
         setSounds(getSoundsState(song));
     }, [song]);
-    
+    // useEffect(() => {
+    //     setSoundsProgress(sounds,progress)
+    //     // console.log("progress", progress);
+    // }, [progress]);
 
     return (
         <div className="App">
@@ -70,8 +74,14 @@ function App() {
                 />
                 <div className="looper">
                     <Cursor
-                        precentage={progress}
+                    duration={getCurrentDuration(0, sounds)}
+                        progress={progress}
                         numberOfChannels={Object.keys(sounds).length}
+                        setProgress={setProgress}
+                        play={play}
+                        setIsPlaying={setIsPlaying}
+                        sounds={sounds}
+                        pause={pause}
                     />
                     {Object.entries(sounds).map(
                         ([id, sound], index: number) => {

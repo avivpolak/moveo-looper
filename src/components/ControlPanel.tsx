@@ -4,13 +4,13 @@ import {
     faPause,
     faArrowRotateLeft,
     faArrowRight,
-    faBackwardFast
+    faBackwardFast,
 } from "@fortawesome/free-solid-svg-icons";
 import {
     chooseSong,
+    getCurrentDuration,
     pause,
     play,
-    setAlmostEnd,
     setStartOver,
     toggleLoop,
 } from "../utils/looper";
@@ -22,8 +22,8 @@ export default function ControlPanel({
     setFunctions: any;
 }) {
     const { setProgress, setSong, setLoop, setIsPlaying } = setFunctions;
-    const { soundPaths, sounds, loop, isPlaying } = states;
-
+    const { soundPaths, sounds, loop, isPlaying, progress } = states;
+    
     return (
         <div>
             <select
@@ -69,22 +69,20 @@ export default function ControlPanel({
             >
                 <FontAwesomeIcon icon={faBackwardFast} />
             </div>
-            <div
-                className="contoller1"
-                onClick={() => {
-                    setAlmostEnd(sounds);
-                }}
-            >
-                setAlmostEnd
-            </div>
+            
             <div
                 className="restart_bar button"
                 onClick={() => {
                     toggleLoop(setLoop, loop);
                 }}
             >
-                {loop ? <FontAwesomeIcon icon={faArrowRotateLeft} /> : <FontAwesomeIcon icon={faArrowRight} />}
+                {loop ? (
+                    <FontAwesomeIcon icon={faArrowRotateLeft} />
+                ) : (
+                    <FontAwesomeIcon icon={faArrowRight} />
+                )}
             </div>
+            
         </div>
     );
 }
