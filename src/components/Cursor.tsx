@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { setSoundsProgress } from "../utils/looper";
 
 export default function Cursor({
@@ -9,6 +10,7 @@ export default function Cursor({
     sounds,
     pause,
 }: any) {
+    
     return (
         <input
             className="cursor"

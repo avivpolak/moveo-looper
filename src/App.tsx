@@ -14,6 +14,7 @@ import {
 import { Sounds } from "./types/looper";
 import soundPaths from "./songs/soundPaths";
 import ControlPanel from "./components/ControlPanel";
+import Backdrop from "./components/Backdrop";
 
 function App() {
     const [song, setSong] = useState(soundPaths["default"]);
@@ -55,6 +56,15 @@ function App() {
     useEffect(() => {
         setSounds(getSoundsState(song));
     }, [song]);
+
+    //making the cursor fit any number of channels
+    useEffect(() => {
+        const numberOfChannels = Object.keys(sounds).length;
+        document.documentElement.style.setProperty(
+            "--cursor-height",
+            `${numberOfChannels * 30 + (numberOfChannels - 1) * 20}px`
+        );
+    }, [sounds]);
 
     return (
         <div className="App">
@@ -104,6 +114,11 @@ function App() {
                     )}
                 </div>
             </div>
+            <Backdrop
+                trackIndex={0}
+                activeColor={"#5f9fff"}
+                isPlaying={isPlaying}
+            />
         </div>
     );
 }

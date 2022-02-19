@@ -1,4 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+:root {
+    --white: #fff;
+    --active-color: #00aeb0;
+    --cursor-height: 120px;
+}
+
 .channel {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -10,7 +16,8 @@
     overflow: hidden;
 }
 body {
-    background-color: rgb(37, 37, 37);
+    background-image: url("./media/images/backgroundMixer.jpg");
+    background-size: cover;
     color: aliceblue;
     font-family: "Open Sans", sans-serif;
 }
@@ -26,9 +33,7 @@ body {
     padding-left: 30px;
 }
 .looper {
-    background-image: url("./media/images/backgroundMixer.jpg");
     opacity: 1;
-    background-size: cover;
 }
 .button {
     text-align: center;
@@ -63,7 +68,7 @@ body {
     -webkit-appearance: none;
     width: 1px; /* Set a specific slider handle width */
     background: rgb(37, 37, 37);
-    height: 100vh;
+    height: var(--cursor-height);
 }
 .cursor::-webkit-slider-thumb:hover {
     cursor: ew-resize;
@@ -72,3 +77,28 @@ body {
 .cursor {
     background-color: rgba(240, 248, 255, 0);
 }
+
+.color-backdrop {
+    background: linear-gradient(45deg, var(--active-color) 20%, transparent 100%)
+      no-repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+  }
+  
+  .color-backdrop.playing {
+    animation: colorChange 20s alternate infinite;
+  }
+  
+  @keyframes colorChange {
+    from {
+      filter: hue-rotate(0deg);
+    }
+    to {
+      filter: hue-rotate(360deg);
+    }
+  }
+  
