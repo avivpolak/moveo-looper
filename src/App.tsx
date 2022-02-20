@@ -17,7 +17,6 @@ import ControlPanel from "./components/ControlPanel";
 import Backdrop from "./components/Backdrop";
 
 function App() {
-
     const [song, setSong] = useState(soundPaths["default"]);
     const [progress, setProgress] = useState(0);
     const [sounds, setSounds] = useState<Sounds>(getSoundsState(song));
@@ -27,8 +26,8 @@ function App() {
     //Sync all the channals
     useEffect(() => {
         const interval = setInterval(() => {
-            syncOffsets(sounds, 0.08); //accuracy, the lower the more accurate
-        }, 3000);
+            syncOffsets(sounds, 0.05,setIsPlaying); //accuracy, the lower the more accurate
+        }, 1000);
         return () => clearInterval(interval);
     }, [isPlaying]);
 
@@ -46,8 +45,7 @@ function App() {
             }
         }, 100);
         return () => clearInterval(interval);
-    }, [isPlaying,loop]);
-
+    }, [isPlaying, loop]);
 
     //
     useEffect(() => {
@@ -61,20 +59,20 @@ function App() {
             "--cursor-height",
             `${numberOfChannels * 30 + (numberOfChannels - 1) * 20 - 0.4}px`
         );
-    }, [song,isPlaying]);
+    }, [song, isPlaying]);
 
     return (
         <div className="App">
             <div>
                 <ControlPanel
-                       setProgress={setProgress}
-                       setSong={setSong}
-                       setLoop={setLoop}
-                       setIsPlaying={setIsPlaying}
-                       soundPaths={soundPaths}
-                       sounds={sounds}
-                       loop={loop}
-                       isPlaying={isPlaying}
+                    setProgress={setProgress}
+                    setSong={setSong}
+                    setLoop={setLoop}
+                    setIsPlaying={setIsPlaying}
+                    soundPaths={soundPaths}
+                    sounds={sounds}
+                    loop={loop}
+                    isPlaying={isPlaying}
                 />
                 <div className="looper">
                     <Cursor
@@ -111,10 +109,7 @@ function App() {
                     )}
                 </div>
             </div>
-            <Backdrop
-                activeColor={"#5f9fff"}
-                isPlaying={isPlaying}
-            />
+            <Backdrop activeColor={"#5f9fff"} isPlaying={isPlaying} />
         </div>
     );
 }
