@@ -1,6 +1,7 @@
 import { faVolumeHigh, faVolumeXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+
 export default function Channel({
     audioRef,
     soundPath,
@@ -20,6 +21,7 @@ export default function Channel({
     id: string;
     color: string;
 }) {
+   
     return (
         <div className="channel">
             <div

@@ -8,7 +8,7 @@ export const getSoundsState = (soundsPaths: string[]) => {
     for (let sound of soundsPaths) {
         const name = sound.split("/").pop()!.split(".")[0];
         sounds[counter] = {
-            ref: createRef(),
+            ref: createRef<HTMLAudioElement>(),
             sound,
             name,
             isMuted: false,
@@ -65,12 +65,16 @@ export const setSoundsProgress = (
     }
     setProgress(value);
 };
-export const syncOffsets = async(sounds: Sounds, offset: number) => {
+export const syncOffsets = async (sounds: Sounds, offset: number,setIsPlaying:Function) => {
     for (const sound of Object.values(sounds)) {
-        const currentTime =  getCurrentTime(0, sounds);
+        const currentTime = getCurrentTime(0, sounds);
         const soundCurrentTime = sound?.ref?.current?.currentTime;
-        if (Math.abs(currentTime - soundCurrentTime) > offset) {
-            sound.ref.current.currentTime = currentTime
+        if (soundCurrentTime) {
+            if (Math.abs(currentTime - soundCurrentTime) > offset) {
+                 pause(sounds, setIsPlaying);
+                sound.ref.current.currentTime = currentTime;
+                 play(sounds,setIsPlaying);
+            }
         }
     }
 };
