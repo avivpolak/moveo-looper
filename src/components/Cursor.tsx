@@ -1,3 +1,4 @@
+import { Sounds } from "../types/looper";
 import { setSoundsProgress } from "../utils/looper";
 
 export default function Cursor({
@@ -8,7 +9,15 @@ export default function Cursor({
     play,
     sounds,
     pause,
-}: any) {
+}: {
+    progress: number;
+    duration: number;
+    setIsPlaying:Function
+    setProgress:Function,
+    play:Function,
+    sounds:Sounds
+    pause:Function
+}) {
     return (
         <input
             className="cursor"

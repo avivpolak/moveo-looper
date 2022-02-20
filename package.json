@@ -40,16 +40,12 @@
             "react-app/jest"
         ]
     },
-
-    "browserslist": 
-     
-        [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version"
-        ],
-        "devDependencies": {
-            "gh-pages": "^3.2.3"
-        }
+    "browserslist": [
+        "last 1 chrome version",
+        "last 1 firefox version",
+        "last 1 safari version"
+    ],
+    "devDependencies": {
+        "gh-pages": "^3.2.3"
     }
-
+}

@@ -6,10 +6,8 @@ import {
     getCurrentDuration,
     getCurrentTime,
     getSoundsState,
-    isOffset,
     pause,
     play,
-    setSoundsProgress,
     syncOffsets,
     toggleMute,
 } from "./utils/looper";
@@ -19,19 +17,18 @@ import ControlPanel from "./components/ControlPanel";
 import Backdrop from "./components/Backdrop";
 
 function App() {
+
     const [song, setSong] = useState(soundPaths["default"]);
     const [progress, setProgress] = useState(0);
     const [sounds, setSounds] = useState<Sounds>(getSoundsState(song));
     const [loop, setLoop] = useState(false);
     const [isPlaying, setIsPlaying] = useState(false);
 
-    //Sync all the channals if neccery
+    //Sync all the channals
     useEffect(() => {
         const interval = setInterval(() => {
-            const currentTime = getCurrentTime(0, sounds);
-            if (currentTime && isOffset(sounds,0.5)) {
-                syncOffsets(sounds,0.5);            }
-        }, 5000);
+            syncOffsets(sounds, 0.08); //accuracy, the lower the more accurate
+        }, 3000);
         return () => clearInterval(interval);
     }, [isPlaying]);
 
@@ -40,35 +37,19 @@ function App() {
         const interval = setInterval(() => {
             const currentTime = getCurrentTime(0, sounds);
             const duration = getCurrentDuration(0, sounds);
-            if ((currentTime === 0 && duration) || (currentTime && duration)) {
-                setProgress(currentTime);
-                if (currentTime >= duration) {
-                    if (!loop) {
-                        pause(sounds, setIsPlaying);
-                    }
+            setProgress(getCurrentTime(0, sounds));
+            if (currentTime >= duration) {
+                if (!loop) {
+                    pause(sounds, setIsPlaying);
+                    setProgress(0);
                 }
             }
-        }, 1);
+        }, 100);
         return () => clearInterval(interval);
-    }, [isPlaying]);
+    }, [isPlaying,loop]);
 
-    //update the channels progress
-    useEffect(() => {
-        const interval = setInterval(() => {
-            const currentTime = getCurrentTime(0, sounds);
-            if (currentTime) {
-                Object.entries(sounds).forEach(([id, sound]) => {
-                    setSounds({
-                        ...sounds,
-                        [id]: { ...sound, currentTime },
-                    });
-                }, 1);
-            }
-        });
-        return () => clearInterval(interval);
-    }, [sounds]);
 
-    //handle song change
+    //
     useEffect(() => {
         setSounds(getSoundsState(song));
     }, [song]);
@@ -80,25 +61,25 @@ function App() {
             "--cursor-height",
             `${numberOfChannels * 30 + (numberOfChannels - 1) * 20 - 0.4}px`
         );
-    }, [sounds]);
+    }, [song,isPlaying]);
 
     return (
         <div className="App">
             <div>
                 <ControlPanel
-                    setFunctions={{
-                        setProgress,
-                        setSong,
-                        setLoop,
-                        setIsPlaying,
-                    }}
-                    states={{ soundPaths, sounds, loop, isPlaying }}
+                       setProgress={setProgress}
+                       setSong={setSong}
+                       setLoop={setLoop}
+                       setIsPlaying={setIsPlaying}
+                       soundPaths={soundPaths}
+                       sounds={sounds}
+                       loop={loop}
+                       isPlaying={isPlaying}
                 />
                 <div className="looper">
                     <Cursor
                         duration={getCurrentDuration(0, sounds)}
                         progress={progress}
-                        numberOfChannels={Object.keys(sounds).length}
                         setProgress={setProgress}
                         play={play}
                         setIsPlaying={setIsPlaying}
@@ -113,7 +94,7 @@ function App() {
                                     id={id}
                                     color={sound.color}
                                     name={sound.name}
-                                    sound={sound.sound}
+                                    soundPath={sound.sound}
                                     audioRef={sound.ref}
                                     isMuted={sound.isMuted}
                                     loop={loop}
@@ -131,7 +112,6 @@ function App() {
                 </div>
             </div>
             <Backdrop
-                trackIndex={0}
                 activeColor={"#5f9fff"}
                 isPlaying={isPlaying}
             />

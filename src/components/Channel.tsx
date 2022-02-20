@@ -3,14 +3,23 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Channel({
     audioRef,
-    sound,
+    soundPath,
     name,
     loop,
     isMuted,
     toggleMute,
     id,
     color,
-}: any) {
+}: {
+    audioRef: React.RefObject<HTMLAudioElement>;
+    soundPath: string;
+    name: string;
+    loop: boolean;
+    isMuted: boolean;
+    toggleMute: Function;
+    id: string;
+    color: string;
+}) {
     return (
         <div className="channel">
             <div
@@ -30,7 +39,12 @@ export default function Channel({
                 style={{ backgroundColor: color, opacity: 0.5 }}
             >
                 {name}
-                <audio ref={audioRef} muted={isMuted} loop={loop} src={sound}>
+                <audio
+                    ref={audioRef}
+                    muted={isMuted}
+                    loop={loop}
+                    src={soundPath}
+                >
                     <source type="audio/mpeg" />
                 </audio>
             </div>

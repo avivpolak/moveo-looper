@@ -8,12 +8,11 @@ export const getSoundsState = (soundsPaths: string[]) => {
     for (let sound of soundsPaths) {
         const name = sound.split("/").pop()!.split(".")[0];
         sounds[counter] = {
-            ref: createRef<any>(),
+            ref: createRef(),
             sound,
             name,
             isMuted: false,
             color: getRandomColor(),
-            currentTime: 0,
         };
         counter++;
     }
@@ -45,7 +44,7 @@ export const play = (sounds: Sounds, setIsPlaying: Function) => {
 };
 export const pause = (sounds: Sounds, setIsPlaying: Function) => {
     for (const sound of Object.values(sounds)) {
-        sound.ref.current.pause();
+        sound?.ref?.current?.pause();
     }
     setIsPlaying(false);
 };
@@ -66,32 +65,16 @@ export const setSoundsProgress = (
     }
     setProgress(value);
 };
-export const syncOffsets = (
-    sounds: Sounds,
-    offset: number,
-) => {
-    const currentTimes=Object.values(sounds).map(sound=>sound.ref.current.currentTime);
-    const averageTime = currentTimes.reduce((a, b) => a + b, 0) / currentTimes.length;
-    const offsetSounds = Object.values(sounds).filter(sound=>Math.abs(sound.ref.current.currentTime-averageTime)>offset);
-
-    for (const sound of offsetSounds) {
-        sound.ref.current.currentTime = averageTime;
-    }
- 
-};
-export const isOffset = (
-    sounds: Sounds,
-    offset:number
-) => {
-    const currentTimes=Object.values(sounds).map(sound=>sound.ref.current.currentTime);
-    const averageTime = currentTimes.reduce((a, b) => a + b, 0) / currentTimes.length;
-    for (const time of currentTimes) {
-        if(Math.abs(time-averageTime)>offset){
-            return true;
+export const syncOffsets = async(sounds: Sounds, offset: number) => {
+    for (const sound of Object.values(sounds)) {
+        const currentTime =  getCurrentTime(0, sounds);
+        const soundCurrentTime = sound?.ref?.current?.currentTime;
+        if (Math.abs(currentTime - soundCurrentTime) > offset) {
+            sound.ref.current.currentTime = currentTime
         }
     }
-    return false;
 };
+
 export const toggleMute = (id: number, sounds: Sounds, setSounds: Function) => {
     setSounds({
         ...sounds,
@@ -99,15 +82,17 @@ export const toggleMute = (id: number, sounds: Sounds, setSounds: Function) => {
     });
 };
 export const getCurrentTime = (id: number, sounds: Sounds) => {
-    if (sounds[id].ref.current) {
-        return sounds[id]?.ref?.current?.currentTime;
+    const currentTime = sounds[id]?.ref?.current?.currentTime;
+    if (currentTime) {
+        return currentTime;
     }
     return 0;
 };
 
 export const getCurrentDuration = (id: number, sounds: Sounds) => {
-    if (sounds[id].ref.current) {
-        return sounds[id]?.ref?.current?.duration;
+    const duration = sounds[id]?.ref?.current?.duration;
+    if (duration) {
+        return duration;
     }
     return 0;
 };

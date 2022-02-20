@@ -13,16 +13,26 @@ import {
     setStartOver,
     toggleLoop,
 } from "../utils/looper";
+import { SoundPaths, Sounds } from "../types/looper";
 export default function ControlPanel({
-    states,
-    setFunctions,
+    setProgress,
+    setSong,
+    setLoop,
+    setIsPlaying,
+    soundPaths,
+    sounds,
+    loop,
+    isPlaying,
 }: {
-    states: any;
-    setFunctions: any;
+    setProgress: Function;
+    setSong : Function;
+    setLoop: Function;
+    setIsPlaying: Function;
+    soundPaths: SoundPaths;
+    sounds: Sounds;
+    loop: boolean;
+    isPlaying: boolean;
 }) {
-    const { setProgress, setSong, setLoop, setIsPlaying } = setFunctions;
-    const { soundPaths, sounds, loop, isPlaying } = states;
-
     return (
         <div>
             <select
