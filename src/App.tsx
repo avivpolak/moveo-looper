@@ -29,9 +29,9 @@ function App() {
     useEffect(() => {
         const interval = setInterval(() => {
             const currentTime = getCurrentTime(0, sounds);
-            if (currentTime && isOffset(sounds,0.1)) {
-                syncOffsets(sounds,0.1);            }
-        }, 1000);
+            if (currentTime && isOffset(sounds,0.5)) {
+                syncOffsets(sounds,0.5);            }
+        }, 5000);
         return () => clearInterval(interval);
     }, [isPlaying]);
 
