@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/moveo-looper/static/css/main.52faf166.css",
-    "main.js": "/moveo-looper/static/js/main.3d25993d.js",
+    "main.js": "/moveo-looper/static/js/main.3c4388a5.js",
     "static/js/787.4118bccb.chunk.js": "/moveo-looper/static/js/787.4118bccb.chunk.js",
     "static/media/bass.mp3": "/moveo-looper/static/media/bass.cc4ac17547c23139e73b.mp3",
     "static/media/beat-box.mp3": "/moveo-looper/static/media/beat-box.26018bd6ea6d318a780e.mp3",
@@ -19,11 +19,11 @@
     "static/media/backgroundMixer.jpg": "/moveo-looper/static/media/backgroundMixer.57fc391b5cca8b038acb.jpg",
     "index.html": "/moveo-looper/index.html",
     "main.52faf166.css.map": "/moveo-looper/static/css/main.52faf166.css.map",
-    "main.3d25993d.js.map": "/moveo-looper/static/js/main.3d25993d.js.map",
+    "main.3c4388a5.js.map": "/moveo-looper/static/js/main.3c4388a5.js.map",
     "787.4118bccb.chunk.js.map": "/moveo-looper/static/js/787.4118bccb.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.52faf166.css",
-    "static/js/main.3d25993d.js"
+    "static/js/main.3c4388a5.js"
   ]
 }
