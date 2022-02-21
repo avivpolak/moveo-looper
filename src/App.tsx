@@ -8,6 +8,7 @@ import {
     getSoundsState,
     pause,
     play,
+    setSoundsProgress,
     syncOffsets,
     toggleMute,
 } from "./utils/looper";
@@ -24,19 +25,19 @@ function App() {
     const [isPlaying, setIsPlaying] = useState(false);
 
     //Sync all the channals
-    useEffect(() => {
-        const interval = setInterval(() => {
-            syncOffsets(sounds, 0.05,setIsPlaying); //accuracy, the lower the more accurate
-        }, 1000);
-        return () => clearInterval(interval);
-    }, [isPlaying]);
+    // useEffect(() => {
+    //     const interval = setInterval(() => {
+    //         syncOffsets(sounds, 0.05,setIsPlaying); //accuracy, the lower the more accurate
+    //     }, 1000);
+    //     return () => clearInterval(interval);
+    // }, [isPlaying]);
 
     //handle loop
     useEffect(() => {
         const interval = setInterval(() => {
             const currentTime = getCurrentTime(0, sounds);
             const duration = getCurrentDuration(0, sounds);
-            setProgress(getCurrentTime(0, sounds));
+            setProgress(currentTime);
             if (currentTime >= duration) {
                 if (!loop) {
                     pause(sounds, setIsPlaying);
@@ -50,6 +51,12 @@ function App() {
     //
     useEffect(() => {
         setSounds(getSoundsState(song));
+        setSoundsProgress(sounds,0,setIsPlaying);
+        const numberOfChannels = Object.keys(sounds).length;
+        document.documentElement.style.setProperty(
+            "--cursor-height",
+            `${numberOfChannels * 30 + (numberOfChannels - 1) * 20 - 0.4}px`
+        );
     }, [song]);
 
     //making the cursor fit any number of channels
